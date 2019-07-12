@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 
 import events from './data/events.json';
 
-ReactDOM.render(
-  <ul>
-    {events.map(item => {
+const zad3 = () =>(
+    events.map(item => {
       const date = new Date(item.date);
 
       if (date >= Date.now()) {
@@ -13,12 +12,14 @@ ReactDOM.render(
           <li key={item.id}>
             <strong>{item.name}</strong><br />
             Gdzie: {item.place}<br />
-            Kiedy: {item.date} - {item.time}
+            Kiedy: {item.date} - {item.time}<br /><br />
           </li>
         );
       }
 
       return null;
-    })}
-  </ul>
-  , document.getElementById('root'));
+    })
+)
+
+
+ReactDOM.render(<ul>{zad3()}</ul>, document.getElementById('root'));
