@@ -2,6 +2,7 @@ import React from 'react';
 import events from './data/events';
 import EventItem from './EventItem';
 import EventFilters from './EventFilters';
+import Form from './data/Formularz.js';
 
 class Events extends React.Component {
   constructor(props) {
@@ -38,6 +39,20 @@ class Events extends React.Component {
       filter: value
     });
   };
+  onSubmit = (name,place,date,time,e) =>{
+    if(name != '' && place != '' && date != '' && time != ''){
+      const newEv = {
+        name,
+        place,
+        date,
+        time,
+      }
+      this.state.events.push(newEv)
+      this.setState({
+        events
+      })
+    }
+  }
 
   render() {
     return (
@@ -56,6 +71,7 @@ class Events extends React.Component {
             return null;
           })}
         </ul>
+        <Form  onSubmit = {this.onSubmit.bind(this)}/>
         <button onClick={this.onClearClicked.bind(this)}>Wyczyść</button>
       </div>
     );
