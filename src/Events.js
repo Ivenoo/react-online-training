@@ -5,7 +5,10 @@ import EventItem from './EventItem';
 class Events extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { events: [] };
+    this.state = { 
+      events: [],
+      inputvalue: ''
+     };
   }
 
   componentDidMount() {
@@ -29,18 +32,39 @@ class Events extends React.Component {
       events: filteredArray
     });
   }
-
+  fnX =(e) =>{
+  e.preventDefault();
+  const findText = e.currentTarget.value
+  this.setState({
+    inputvalue: findText
+  })
+  console.log(findText)
+  }
   render() {
     return (
       <div>
+        <input type='text' placeholder="write text" onChange={this.fnX.bind(this)}></input><br/>
+        <span>{this.state.inputvalue}</span><br/><br/>
         <ul>
           {this.state.events.map(item => {
             const date = new Date(item.date);
 
             if (date >= Date.now()) {
-              return (
-                <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
-              );
+              if(item.name != ''){
+                 if(item.name.toLowerCase().indexOf(this.state.inputvalue.toLowerCase()) != -1 ){
+                  return (
+                    <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
+                  );
+                 }else{
+                  return null;
+                 }
+               
+              }else{
+                return (
+                  <EventItem {...item} key={item.id} onDeleteClicked={this.onDeleteClicked.bind(this)} />
+                );
+              }
+              
             }
 
             return null;
