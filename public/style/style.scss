@@ -1,3 +1,48 @@
-body{
-    background: rgb(112, 0, 0);
+//dsaffadsfasdfasdfadsdasfdas 
+@import "variables.scss";
+// @mixin text_decoration($weight:100){
+//     color:$text_color;
+//     font:{
+//         size:20px;
+//         weight: $weight;
+//     }
+// }
+
+// @for $i from 1 through 6{
+//     @if $i % 2 == 0 {
+//         h#{$i} 
+//         {
+//             color: #fff;
+//         }
+//     }@else{
+//         h#{$i} 
+//         {
+//             color: red;
+//         }
+//     }  
+// }
+
+// body{
+//     background: $bgc;
+
+//     p{
+//         @include text_decoration(800);
+//         margin-bottom:0px;
+//     }
+// }
+
+$baseSiteColour: rgb(44, 160, 102);
+$pageBackgroundColour: lighten(change-color($baseSiteColour,$alpha: 0.2), 40%);
+$standardTextColour: darken($baseSiteColour, 20%);
+
+body {
+    background-color: $pageBackgroundColour;
+}
+
+p {
+    color: $baseSiteColour;
+}
+
+li {
+    color: $standardTextColour;
 }
